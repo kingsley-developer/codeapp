@@ -1,0 +1,17 @@
+html, body{
+    background-image: url("../backgroundimgs/d.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.padding-home-page-welcome{
+    padding-top: 60px;
+}
+
+.home_page_welcome_style{
+    margin-top: 180px;
+    font-weight: bolder;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
