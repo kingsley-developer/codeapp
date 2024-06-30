@@ -1,10 +1,11 @@
 "use client";
 import { Outlet } from "react-router-dom"
-import Footer from "./Footer.tsx"
 import { NavLink } from "react-router-dom"
 import {memo} from "react"
 import {IoMdHome} from "react-icons/io"
-
+import {FaUserSecret} from "react-icons/fa"
+import {GoPeople} from "react-icons/go"
+import {MdEmail} from "react-icons/md"
 export default memo(function HomeHeader() {
     return (
       <div>
@@ -23,17 +24,17 @@ export default memo(function HomeHeader() {
             </li>
             <li className="header_text_style">
               <NavLink to="about" end className={({isActive})=> isActive ? "nav-link px-2 fs-4 text-warning" : " nav-link px-2 text-white fs-4"}
-            ><IoMdHome className="bi d-block mx-auto"/>About
+            ><GoPeople className="bi d-block mx-auto"/>About
             </NavLink>
             </li>
             <li className="header_text_style">
             <NavLink to="privacypolicy" end className={({isActive})=> isActive ? "nav-link px-2 fs-4 text-warning" : " nav-link px-2 text-white fs-4"}
-            ><IoMdHome className="bi d-block mx-auto"/>Privacy Policy
+            ><FaUserSecret className="bi d-block mx-auto"/>Privacy Policy
             </NavLink>
             </li>
             <li className="header_text_style">
               <NavLink to="contactus" end className={({isActive})=> isActive ? "nav-link px-2 fs-4 text-warning" : " nav-link px-2 text-white fs-4"}
-            ><IoMdHome className="bi d-block mx-auto"/>Contact Us
+            ><MdEmail className="bi d-block mx-auto"/>Contact Us
             </NavLink>
             </li>
           </ul>
@@ -46,7 +47,6 @@ export default memo(function HomeHeader() {
       </div>
     </header>
     <Outlet/>
-    <Footer/>
     </div>
     )
-  })
+})

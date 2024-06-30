@@ -1,0 +1,4 @@
+service ID - service_6vupkka
+template ID - template_dmkw00p
+public key - IIz_PN9SQk0uWa-xP
+private key - GgziivaZ8sDJbHAPqPo47

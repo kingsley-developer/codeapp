@@ -1,0 +1,39 @@
+{
+  "name": "websocket-nodejs-server",
+  "version": "1.0.0",
+  "description": "This is the web socket server of codeapp.com",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/kingsley-developer/codeapp"
+  },
+  "keywords": [
+    "codeapp.com",
+    "chat",
+    "message",
+    "forum",
+    "chatroom"
+  ],
+  "author": "Kingsley Developer",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/nodemon": "^1.19.6",
+    "nodemon": "^3.1.4",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.9",
+    "@types/socket.io": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nltk": "^0.0.1",
+    "socket.io": "^4.7.5"
+  }
+}
