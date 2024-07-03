@@ -9,7 +9,7 @@ import "../../../../assets/default-pgs-styles/homestyles/img-gallery.scss"
 
 export default memo(function ImgGallery() {
   return (
-    <div className="img-gallery-container">
+    <div className="img-gallery-container container-fluid">
   hello
     </div>
   )

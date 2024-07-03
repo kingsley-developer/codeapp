@@ -1,10 +1,7 @@
 package main
 
-import (
-	"github.com/kingsley-developer/codeapp/codeapp/codeapp-go-server/utils"
-
-)
+import "github.com/kingsley-developer/codeapp/codeapp/codeapp-go-server/server"
 
 func main() {
-	utils.Testing_Util()
+	server.Server()
 }
