@@ -1,18 +1,12 @@
 "use client";
-import {memo, useEffect} from 'react'
+import {memo, useState} from 'react'
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
-import {useRef, useState} from "react"
+import {useRef} from "react"
 import emailjs from "@emailjs/browser"
-import axios from "axios"
 import * as yup from "yup"
 import {useForm} from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
-
-async function getEmailKeys(){
-    const keys = await axios.get("http://localhost:8670/emailjs_keys")
-    return keys.data
-}
 
 const schema = yup.object({
     email: yup.string().email("Email must be a valid email").required("Please provide an email address"),
@@ -20,45 +14,36 @@ const schema = yup.object({
 }).required()
 
 export default memo(function EmailUs() {
-    const [emailjs_key, set_emailjs_key] = useState({
-        Publickey: "",
-        ServiceID: "",
-        TemplateID: ""
-    })
+
+    const [loading, setLoading] = useState(false)
 
     const {register, handleSubmit, formState: {errors},} = useForm({
         resolver: yupResolver(schema),
     })
 
-    useEffect(()=>{
-     async function emailKeys(){
-       const data = await getEmailKeys()
-       set_emailjs_key(data)
-     }
-     emailKeys()
-    }, [])
     const form = useRef("")
 
     const sendEmail = async(data: any)=>{
 
-        emailjs.sendForm(emailjs_key.ServiceID, emailjs_key.TemplateID, form.current, {
-            publicKey: emailjs_key.Publickey,
+        setLoading(true)
+        emailjs.sendForm(import.meta.env.VITE_serviceID, import.meta.env.VITE_TemplateID, form.current, {
+            publicKey: import.meta.env.VITE_Publickey,
         })
         .then(
             ()=>{
-                console.log("Success!")
+                setLoading(false)
                 alert("Email Sent")
             },
             (error: Error)=>{
-                console.log("Failed to send email....", error.message)
                 alert(error.message)
+                setLoading(false)
             }
         )
     }
 
   return (
-    <div className="container-fluid">
-        <h2 className="text-dark text-center fs-4 fw-semibold badge rounded-pill bg-warning mt-3">Contact Us</h2>
+    <div className="container-fluid mt-3">
+        <h2 className="text-dark text-center fs-4 fw-semibold badge rounded-pill bg-warning">Contact Us</h2>
         <div>
             <Form ref={form} onSubmit={handleSubmit(sendEmail)}>
                 <Form.Group className="mt-3" controlId="formgroupid">
@@ -73,7 +58,12 @@ export default memo(function EmailUs() {
                     <p className='text-danger fs-4 lh-base mt-4 fw-semibold'>{errors.message?.message}</p>
                 </Form.Group>
 
-                <Button variant="warning" type="submit" className='mt-4 fw-bold mb-4 w-75 fs-4' value="Send">Submit</Button>
+                <Button
+                variant="warning" 
+                type="submit" 
+                className='mt-4 fw-bold mb-4 w-75 fs-4'
+                active 
+                value="Send">{loading ? <span>Submitting</span> : <span>Submit</span>}</Button>
             </Form>
         </div>
     </div>
