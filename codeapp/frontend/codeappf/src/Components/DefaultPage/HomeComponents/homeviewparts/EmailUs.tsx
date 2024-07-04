@@ -15,7 +15,7 @@ async function getEmailKeys(){
 }
 
 const schema = yup.object({
-    email: yup.string().required("Please provide an email address"),
+    email: yup.string().email("Email must be a valid email").required("Please provide an email address"),
     message: yup.string().required("Please provide the message")
 }).required()
 
@@ -40,8 +40,6 @@ export default memo(function EmailUs() {
     const form = useRef("")
 
     const sendEmail = async(data: any)=>{
-
-        console.log(data)
 
         emailjs.sendForm(emailjs_key.ServiceID, emailjs_key.TemplateID, form.current, {
             publicKey: emailjs_key.Publickey,
