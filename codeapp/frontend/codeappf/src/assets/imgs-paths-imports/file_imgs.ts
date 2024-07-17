@@ -11,10 +11,31 @@ import g6 from "../gallery-imgs/6.jpg"
 import g7 from "../gallery-imgs/7.jpg"
 import g8 from "../gallery-imgs/8.jpg"
 
+import s1 from "../our-sponsors/download (1).png"
+import s2 from "../our-sponsors/download (2).png"
+import s4 from "../our-sponsors/download (4).png"
+import s5 from "../our-sponsors/download (5).png"
+import s6 from "../our-sponsors/download (6).png"
+import s7 from "../our-sponsors/download (7).png"
+import s8 from "../our-sponsors/download8.jpg"
+import s9 from "../our-sponsors/download.png"
+import kinsley_pic from "../developers-kingsley/1695464818225.jpg"
+
 const devimgs: imgtype = {
     dev1,
     dev2,
     dev3
+}
+
+const sponsor_img: sponsor_img_type = {
+    s1,
+    s2,
+    s4,
+    s5,
+    s6,
+    s7,
+    s8,
+    s9
 }
 
 const gallery: galleryImgs = [
@@ -36,4 +57,4 @@ const gallery: galleryImgs = [
     },
 ]
 
-export {devimgs, gallery}
+export {devimgs, gallery, sponsor_img, kinsley_pic}

@@ -1,13 +1,3 @@
-html, body{
-    background-image: url("../backgroundimgs/a.png");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.home_page_welcome_style{
-    margin-top: 180px;
-    font-weight: bolder;
+.font-family-codeapp{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

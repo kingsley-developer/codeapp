@@ -32,3 +32,43 @@
 .dropdown-toggle {
   outline: 0;
 }
+
+.set-gap-header{
+  padding-left: 100px;
+}
+
+.set-gap-header_nav{
+  margin-left: 58px;
+}
+.set-gap-header_nav_btn{
+  margin-left: 58px;
+}
+
+@media (max-width: 989px){
+  .set-gap-header{
+  padding-left: 10px;
+}
+  .set-gap-header_nav{
+    padding-left: 10px;
+    font-size: 20px;
+  }
+  .set-gap-header_nav_btn{
+  margin-left: 10px;
+}
+}
+
+@media (max-width: 653px){
+  .set-gap-header{
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin: auto;
+}
+  .set-gap-header_nav{
+    padding-left: 10px;
+    font-size: 20px;
+  }
+  .set-gap-header_nav_btn{
+  margin-left: 0px;
+}
+}
