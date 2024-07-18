@@ -1,3 +1,4 @@
+"use client"
 import ReactDOM from 'react-dom/client'
 import "./Components/declarefiles/declaremodules.d.ts"
 import App from './App.tsx'
