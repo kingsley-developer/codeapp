@@ -21,22 +21,22 @@ export default memo(function HomeHeader1() {
         <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
             <li className="header_text_style">
-              <NavLink to="/" end className={({isActive})=> isActive ? "font-family-codeapp nav-link fw-bold px-2 fs-4 text-warning" : "font-family-codeapp nav-link fw-bold px-2 text-white fs-4"}
+              <NavLink to="/" end className={({isActive})=> isActive ? "font-family-codeapp nav-link fw-bold px-2 text-warning set-gap-header_nav" : "font-family-codeapp nav-link fw-bold px-2 text-white set-gap-header_nav"}
             > <IoMdHome className="bi d-block mx-auto"/> Home
             </NavLink>
             </li>
             <li className="header_text_style">
-              <NavLink to="about" end className={({isActive})=> isActive ? "font-family-codeapp nav-link px-2 fw-bold fs-4 text-warning set-gap-header_nav" : "font-family-codeapp set-gap-header_nav nav-link fw-bold px-2 text-white fs-4"}
+              <NavLink to="about" end className={({isActive})=> isActive ? "font-family-codeapp nav-link px-2 fw-bold text-warning set-gap-header_nav" : "font-family-codeapp set-gap-header_nav nav-link fw-bold px-2 text-white"}
             ><GoPeople className="bi d-block mx-auto"/>About
             </NavLink>
             </li>
             <li className="header_text_style">
-            <NavLink to="privacypolicy" end className={({isActive})=> isActive ? "set-gap-header_nav nav-link px-2 fw-bold fs-4 text-warning font-family-codeapp" : "font-family-codeapp set-gap-header_nav nav-link fw-bold px-2 text-white fs-4"}
+            <NavLink to="privacypolicy" end className={({isActive})=> isActive ? "set-gap-header_nav nav-link px-2 fw-bold text-warning font-family-codeapp" : "font-family-codeapp set-gap-header_nav nav-link fw-bold px-2 text-white"}
             ><FaUserSecret className="bi d-block mx-auto"/>Privacy Policy
             </NavLink>
             </li>
             <li className="header_text_style">
-              <NavLink to="contactus" end className={({isActive})=> isActive ? "set-gap-header_nav nav-link px-2 fs-4 fw-bold text-warning font-family-codeapp" : "font-family-codeapp set-gap-header_nav nav-link fw-bold px-2 text-white fs-4"}
+              <NavLink to="contactus" end className={({isActive})=> isActive ? "set-gap-header_nav nav-link px-2 fw-bold text-warning font-family-codeapp" : "font-family-codeapp set-gap-header_nav nav-link fw-bold px-2 text-white"}
             ><MdEmail className="bi d-block mx-auto"/>Contact Us
             </NavLink>
             </li>

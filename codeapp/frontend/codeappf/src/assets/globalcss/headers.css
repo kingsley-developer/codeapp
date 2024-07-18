@@ -35,40 +35,65 @@
 
 .set-gap-header{
   padding-left: 100px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .set-gap-header_nav{
   margin-left: 58px;
+  font-size: 20px;
 }
 .set-gap-header_nav_btn{
   margin-left: 58px;
 }
 
+
 @media (max-width: 989px){
   .set-gap-header{
-  padding-left: 10px;
+  padding-left: 130px;
 }
   .set-gap-header_nav{
-    padding-left: 10px;
-    font-size: 20px;
+    padding-left: 40px;
   }
-  .set-gap-header_nav_btn{
-  margin-left: 10px;
+  .set-gap-header_nav_btn{  
+  position: relative;
+  right: 70px;
+  top: 30px;
 }
 }
 
-@media (max-width: 653px){
+
+@media (max-width: 787px){
   .set-gap-header{
-  width: 100%;
-  display: block;
-  margin-left: auto;
-  margin: auto;
+  padding-left: 65px;
 }
-  .set-gap-header_nav{
-    padding-left: 10px;
-    font-size: 20px;
-  }
-  .set-gap-header_nav_btn{
-  margin-left: 0px;
+}
+
+@media (max-width: 719px){
+  .set-gap-header{
+  padding-left: 20px;
+}
+.set-gap-header_nav{
+  padding-left: 10px;
+}
+}
+
+@media (max-width: 417px){
+.set-gap-header_nav{
+  padding-left: 0px;
+}
+.set-gap-header{
+  position: relative;
+  left: 30px;
+}
+}
+
+@media (max-width: 363px){
+.set-gap-header_nav{
+  padding-left: 0px;
+}
+.set-gap-header{
+  position: relative;
+  left: 10px;
 }
 }

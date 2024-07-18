@@ -13,6 +13,7 @@ import contact_scss from "../../../assets/default-pgs-styles/contact-styles/Cont
 import contact_img1 from "../../../assets/contactus-imgs/young-business-women-having-casual-meeting-at-coffee-shop-austockphoto-000083275.jpg"
 import Footer from "../../FOOTER/Footer";
 import { Fade } from "react-awesome-reveal"
+import ScrollUpButton from "react-scroll-up-button"
 
 const schema = yup.object({
     email: yup.string().email("Email must be a valid email").required("Please provide an email address"),
@@ -50,6 +51,10 @@ export default memo(function ContactUs() {
     }
 
     return (
+        <div>
+            <ScrollUpButton
+          style={{backgroundColor: "gold", width:75}}
+        />
         <div className={`container-fluid ${contact_scss.contContactUsMain} bg-dark`}>
             <div className={"container text-white"}>
 
@@ -78,6 +83,11 @@ export default memo(function ContactUs() {
                 </p>
                 </Fade>
             </div>
+
+            <Fade cascade={true} damping={5} direction="down">
+            <span className={`${contact_scss.downhandstyle_contact_us}`}>👇</span>    
+            </Fade>
+            
             <Fade cascade={true} damping={5} direction="down">
             <div className={`container mt-5`}>
         <h1 className="text-dark text-center fw-bold bg-warning font-family-codeapp">Contact Us</h1>
@@ -104,7 +114,8 @@ export default memo(function ContactUs() {
             </Form>
           </div>
     </div>
-    </Fade>
+        </Fade>
+    </div>    
     <Footer/>
     </div>
   )

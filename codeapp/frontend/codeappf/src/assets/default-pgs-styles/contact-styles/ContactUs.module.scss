@@ -10,3 +10,15 @@
     width: 100%;
     height: 80%;
 }
+.downhandstyle_contact_us{
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    animation-name: slideDown;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes slideDown{
+    100%{transform: translateY(50%);}
+}
