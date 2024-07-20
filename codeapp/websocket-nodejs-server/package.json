@@ -1,10 +1,10 @@
 {
   "name": "websocket-nodejs-server",
   "version": "1.0.0",
-  "description": "This is the web socket server of codeapp.com",
-  "main": "./src/index.js",
+  "description": "This is the Nodejs web socket server of codeapp.com",
+  "main": "./src/server.ts",
   "scripts": {
-    "test": "test"
+    "ts": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -25,17 +25,20 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",
     "@types/node": "^20.14.9",
     "@types/socket.io": "^3.0.2",
+    "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "emailjs": "^4.0.3",
     "express": "^4.19.2",
+    "mysql2": "^3.10.3",
     "nltk": "^0.0.1",
     "socket.io": "^4.7.5",
     "ts-node": "^10.9.2"

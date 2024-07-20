@@ -90,7 +90,10 @@ export default memo(function ContactUs() {
             
             <Fade cascade={true} damping={5} direction="down">
             <div className={`container mt-5`}>
-        <h1 className="text-dark text-center fw-bold bg-warning font-family-codeapp">Contact Us</h1>
+        <h1 className={`text-dark text-center
+         fw-bold bg-warning font-family-codeapp ${contact_scss.center_contactus_head} badge rounded-pill fs-4`}>
+         Contact Us
+         </h1>
         <div>
             <Form ref={form} onSubmit={handleSubmit(sendEmail)}>
                 <Form.Group className="mt-5" controlId="formgroupid">

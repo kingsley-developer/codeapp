@@ -12,6 +12,8 @@ import homeStyle_scss from "../../../assets/default-pgs-styles/homestyles/homevi
 import {Fade} from "react-awesome-reveal"
 import ScrollUpButton from "react-scroll-up-button"
 import Footer from "../../FOOTER/Footer.tsx"
+//import {app} from "../../../firebase-store/codeappwefirebase.ts"
+//import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
 
 export default memo(function HomeView() {
     return (
@@ -69,7 +71,7 @@ export default memo(function HomeView() {
         <Fade cascade={true} damping={5} direction="down">
           <Row>
             <Col lg={true}>
-            <Button variant="outline-warning" size="lg" >Sign up</Button>
+            <Button variant="outline-warning" size="lg">Sign up</Button>
             </Col>
             <Col lg={true}>
             <Button variant="outline-warning" size="lg">Sign In</Button>
@@ -80,7 +82,8 @@ export default memo(function HomeView() {
 
     
     <Fade cascade={true} damping={5} direction="down">
-    <div className={"mt-5 font-family-codeapp bg-warning text-dark text-break text-center text-wrap fw-bolder lh-sm"}>
+    <div className={`badge rounded-pill mt-5 font-family-codeapp bg-warning 
+    text-dark text-break text-center text-wrap fw-bolder lh-sm ${homeStyle_scss.center_coding_c_head}`}>
     <h2>Coding Community</h2>
     </div>
     <ImgGallery/>
