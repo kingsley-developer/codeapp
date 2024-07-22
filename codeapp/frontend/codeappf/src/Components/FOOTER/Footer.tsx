@@ -23,8 +23,8 @@ export default memo(function Footer() {
         <div className="mt-4">
         <SocialIcon url="https://www.facebook.com/kingsley.anyichie.77" fgColor="black" bgColor="white"/>
           <SocialIcon url="https://www.github.com/kingsley-developer" fgColor="black" bgColor="white" className={footerStyle.socialIconDesign}/>
-          <SocialIcon url="https://www.github.com/kingsley-developer" fgColor="black" bgColor="white" className={footerStyle.socialIconDesign} />
-          <SocialIcon url="https://www.github.com/kingsley-developer" fgColor="black" bgColor="white" className={footerStyle.socialIconDesign}/>
+          <SocialIcon url="https://www.instagram.com/kingsleyanyichie9?igsh=N21jem1neHJlenpk" fgColor="black" bgColor="white" className={footerStyle.socialIconDesign} />
+          <SocialIcon url="https://x.com/KingsleyAnyich3?s=09" fgColor="black" bgColor="white" className={footerStyle.socialIconDesign}/>
         </div>                
         </div>
       <div className={`mt-5 container-fluid text-center ${footerStyle.copywriteFooter}`}>

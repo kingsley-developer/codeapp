@@ -4,7 +4,9 @@ import HomeView from "../HomeComponents/HomeView"
 
 export default memo(function Home() {
   return (
-    <HomeView/>
+    <div>
+      <HomeView />
+      </div>
   )
 })
 

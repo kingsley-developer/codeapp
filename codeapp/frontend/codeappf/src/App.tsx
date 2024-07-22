@@ -4,6 +4,8 @@ import Home from "./Components/DefaultPage/Routes/Home"
 import About from "./Components/DefaultPage/Routes/About"
 import ContactUs from "./Components/DefaultPage/Routes/ContactUs"
 import PrivacyPolicy from "./Components/DefaultPage/Routes/PrivacyPolicy"
+import NotFound from "./Components/NOTFOUND/NotFound"
+import UserPage from "./Components/UserPage/Dashboard/UserPage"
 import {memo} from "react"
 import {createBrowserRouter,
   RouterProvider,
@@ -18,8 +20,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route index element={<Home/>}/>
       <Route path="about" element={<About/>}/>
       <Route path="privacypolicy" element={<PrivacyPolicy/>}/>
-      <Route path="contactus" element={<ContactUs/>}/>
-      </Route>
+      <Route path="contactus" element={<ContactUs />} />
+    </Route>
+    <Route path="dashboard" element={<UserPage/>}/>
+    <Route path="*" element={<NotFound />} />
     </Route>
 ))
 

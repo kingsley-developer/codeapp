@@ -11,7 +11,6 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import { useAlert } from 'react-alert';
 import contact_scss from "../../../assets/default-pgs-styles/contact-styles/ContactUs.module.scss"
 import contact_img1 from "../../../assets/contactus-imgs/young-business-women-having-casual-meeting-at-coffee-shop-austockphoto-000083275.jpg"
-import Footer from "../../FOOTER/Footer";
 import { Fade } from "react-awesome-reveal"
 import ScrollUpButton from "react-scroll-up-button"
 
@@ -104,14 +103,14 @@ export default memo(function ContactUs() {
 
                 <Form.Group className="mt-5" controlId="formgroupid1">
                     <Form.Label className={`text-white ${contact_scss.centerText} fs-3 fw-bold font-family-codeapp`}>Enter Message:</Form.Label>
-                    <Form.Control as="textarea" rows={6} className='mw-100 mt-4' {...register("message")}/>
+                    <Form.Control as="textarea" rows={10} className='mw-100 mt-4' {...register("message")}/>
                     <p className='text-danger text-center fs-4 lh-base mt-4 fw-semibold font-family-codeapp'>{errors.message?.message}</p>
                 </Form.Group>
 
                 <Button
                 variant="warning" 
                 type="submit" 
-                className='fw-bold mt-5 w-100 fs-4 font-family-codeapp'
+                className={`fw-bold mt-5 w-50 fs-4 font-family-codeapp ${contact_scss.centerBtn}`}
                 active 
                 value="Send">{loading ? <span className='text-center'>Submitting</span> : <span className="text-center">Submit</span>}</Button>
             </Form>
@@ -119,7 +118,6 @@ export default memo(function ContactUs() {
     </div>
         </Fade>
     </div>    
-    <Footer/>
     </div>
   )
 })

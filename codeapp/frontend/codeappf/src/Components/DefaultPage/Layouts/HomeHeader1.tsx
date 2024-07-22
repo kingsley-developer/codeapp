@@ -7,6 +7,7 @@ import {IoMdHome} from "react-icons/io"
 import {FaUserSecret} from "react-icons/fa"
 import {GoPeople} from "react-icons/go"
 import {MdEmail} from "react-icons/md"
+import Footer from "../../FOOTER/Footer";
 
 export default memo(function HomeHeader1() {
   return (
@@ -53,7 +54,8 @@ export default memo(function HomeHeader1() {
             </Navbar.Collapse>
       </div>
     </Navbar>
-    <Outlet/>
-    </div>
+     <Outlet/>
+     <Footer/>
+      </div>
   );
 })

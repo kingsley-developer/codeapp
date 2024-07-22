@@ -1,0 +1,26 @@
+.emoji_style{
+    font-size: 200px;
+    display: flex;
+    justify-content: center;
+    animation-name: slideDown;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.notfound_text{
+    margin-top: 100px;
+}
+
+@keyframes slideDown{
+    100%{transform: translateY(50%);}
+}
+
+.setSize_Not{
+    height: 100vh;
+}
+
+@media (max-width: 552px){
+    .emoji_style{
+        font-size: 100px;
+    }
+}

@@ -1,6 +1,5 @@
 "use client";
 import {memo} from "react"
-import Footer from "../../FOOTER/Footer";
 import about_scss from "../../../assets/default-pgs-styles/about-styles/about.module.scss"
 import about_img1 from "../../../assets/about-imgs/a.jpg"
 import about_img2 from "../../../assets/about-imgs/b.jpg"
@@ -50,7 +49,6 @@ export default memo(function About() {
         </Fade>
         </div>
       </div>
-        <Footer/>
       </div>
     )
   }

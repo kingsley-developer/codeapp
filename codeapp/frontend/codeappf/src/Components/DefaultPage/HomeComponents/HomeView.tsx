@@ -11,7 +11,6 @@ import { devimgs} from "../../../assets/imgs-paths-imports/file_imgs"
 import homeStyle_scss from "../../../assets/default-pgs-styles/homestyles/homeview.module.scss"
 import {Fade} from "react-awesome-reveal"
 import ScrollUpButton from "react-scroll-up-button"
-import Footer from "../../FOOTER/Footer.tsx"
 //import {app} from "../../../firebase-store/codeappwefirebase.ts"
 //import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
 
@@ -89,7 +88,6 @@ export default memo(function HomeView() {
     <ImgGallery/>
     </Fade>
 </Container>
-<Footer/>
 </div>
 )
 })

@@ -1,6 +1,5 @@
 "use client";
 import {memo} from "react"
-import Footer from "../../FOOTER/Footer";
 import { Fade } from "react-awesome-reveal"
 import privacy_scss from "../../../assets/default-pgs-styles/privacy-styles/privacy.module.scss"
 import privacy_img1 from "../../../assets/policy-imgs/a.jpg"
@@ -215,7 +214,6 @@ export default memo(function PrivacyPolicy() {
           </div>
         </Fade>
       </div>
-      <Footer/>
     </div>
   )
 })

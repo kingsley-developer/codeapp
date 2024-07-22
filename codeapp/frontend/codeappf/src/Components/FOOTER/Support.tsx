@@ -38,12 +38,12 @@ export default memo(function Support() {
 async function transact(){
   const paystackInstance = new PaystackPop()
   const money: number = Number(watch("amount"))
-    if (money >= 4000 && typeof money == "number") {    
+    if (money >= 5000 && typeof money == "number") {    
       setLoading(true)
   paystackInstance.newTransaction({
     key: import.meta.env.VITE_TEST_PUBLIC_KEY,
     email: import.meta.env.VITE_MyEmail,
-    amount: 1000 * money,
+    amount: 100 * money,
     firstName: watch("firstname"),
     lastName: watch("lastname"),
     onSuccess,
@@ -51,7 +51,7 @@ async function transact(){
   }) 
 }
   else {
-    alert_msg.error("Amount must be equal to or greater than 4000 and must be a number")
+    alert_msg.error("Amount must be equal to or greater than 5000 and must be a number")
     setLoading(false)
   }
 } 
@@ -79,7 +79,7 @@ async function submitForm(data: any){
 
                 <Form.Group className="mt-3" controlId="formgroupid3">
                     <Form.Label className='text-light text-center fs-4 fw-semibold'>Enter Amount:</Form.Label>
-                    <Form.Control type="text" {...register("amount")} placeholder="20000" className='mw-100 mt-2'/>
+                    <Form.Control type="text" {...register("amount")} placeholder="5000" className='mw-100 mt-2'/>
               <p className='text-danger fs-4 lh-base mt-4 fw-semibold font-family-codeapp'>{errors.amount?.message}</p>
                 </Form.Group>
 
