@@ -60,6 +60,7 @@
     "react-sliding-pane": "^7.3.0",
     "react-sliding-side-panel": "^2.0.3",
     "react-social-icons": "^6.16.0",
+    "reactjs-popup": "^2.0.6",
     "socket.io-client": "^4.7.5",
     "typewriter-effect": "^2.21.0",
     "yup": "^1.4.0"
