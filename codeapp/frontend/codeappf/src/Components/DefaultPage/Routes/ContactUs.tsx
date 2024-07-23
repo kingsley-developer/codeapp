@@ -110,7 +110,7 @@ export default memo(function ContactUs() {
                 <Button
                 variant="warning" 
                 type="submit" 
-                className={`fw-bold mt-5 w-50 fs-4 font-family-codeapp ${contact_scss.centerBtn}`}
+                className={`fw-bold mt-5 w-25 fs-4 font-family-codeapp ${contact_scss.centerBtn}`}
                 active 
                 value="Send">{loading ? <span className='text-center'>Submitting</span> : <span className="text-center">Submit</span>}</Button>
             </Form>

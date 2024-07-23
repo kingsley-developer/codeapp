@@ -11,8 +11,7 @@ import { devimgs} from "../../../assets/imgs-paths-imports/file_imgs"
 import homeStyle_scss from "../../../assets/default-pgs-styles/homestyles/homeview.module.scss"
 import {Fade} from "react-awesome-reveal"
 import ScrollUpButton from "react-scroll-up-button"
-//import {app} from "../../../firebase-store/codeappwefirebase.ts"
-//import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
+import NewWindow from "react-new-window"
 
 export default memo(function HomeView() {
     return (

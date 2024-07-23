@@ -207,7 +207,7 @@ export default memo(function PrivacyPolicy() {
             <Button
                 variant="warning" 
                 type="submit" 
-                className={`fw-bold mt-5 w-50 fs-5 font-family-codeapp ${privacy_scss.set_na_to_cus_btn}`}
+                className={`fw-bold mt-5 w-25 fs-5 font-family-codeapp ${privacy_scss.set_na_to_cus_btn}`}
                 active 
                 value="Send">To Contact Us</Button>
               </Link>

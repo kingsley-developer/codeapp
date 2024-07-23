@@ -2,14 +2,17 @@
 import { NavLink, Outlet } from "react-router-dom"
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {memo} from "react"
+import {memo, useState} from "react"
 import {IoMdHome} from "react-icons/io"
 import {FaUserSecret} from "react-icons/fa"
 import {GoPeople} from "react-icons/go"
 import {MdEmail} from "react-icons/md"
 import Footer from "../../FOOTER/Footer";
+import SignUp from "../../Sign/SignUp";
 
 export default memo(function HomeHeader1() {
+  const [sign, setSign] = useState(false)
+  
   return (
     <div className="bg-dark">
     <Navbar expand="lg" className="bg-body-tertiary text-white bg-dark">
@@ -45,15 +48,17 @@ export default memo(function HomeHeader1() {
   
           <div className="text-end">
             <button type="button" className="btn btn-outline-light me-2 fw-bold font-family-codeapp set-gap-header_nav_btn">Login</button>
-            <button type="button" className="btn btn-warning fw-bold set-gap-header_nav_btn font-family-codeapp">Sign-up</button>
+            <button onClick={()=> setSign(true)} type="button" className="btn btn-warning fw-bold set-gap-header_nav_btn font-family-codeapp">Sign-up</button>
           </div>
-        </div>
+          </div>
+                
       </div>
   
           </Nav>
             </Navbar.Collapse>
       </div>
-    </Navbar>
+      </Navbar>
+      <SignUp open={sign}/>
      <Outlet/>
      <Footer/>
       </div>
