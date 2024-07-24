@@ -14,7 +14,7 @@ const divStyle = {
 
 export default memo(function ImgGallery() {
   return (
-    <div className="img-gallery-container container-fluid mt-5">
+    <div className="container-fluid mt-5">
       <Slide autoplay={true}>
         {gallery.map((slideImg, index) => (
           <div key={index}>

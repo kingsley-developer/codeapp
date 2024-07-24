@@ -1,16 +1,14 @@
-import {memo} from 'react'
+"use client"
+import { memo } from 'react'
 import signup_scss from "../../assets/Sign/SignUp.module.scss"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
-import NewWindow from "react-new-window"
 
-type datatype = {
-  open: boolean
-}
-export default memo(function SignUp({ open }: datatype) {
-  console.log(open)
+export default memo(function SignUp() {
   return (
-    <div>Sign up</div>
+    <div className='bg-dark text-warning'>
+      Sign up
+    </div>
   )
 })
 

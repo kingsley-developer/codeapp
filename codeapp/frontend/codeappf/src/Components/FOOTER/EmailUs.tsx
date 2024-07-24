@@ -53,13 +53,13 @@ export default memo(function EmailUs() {
             <Form ref={form} onSubmit={handleSubmit(sendEmail)}>
                 <Form.Group className="mt-3" controlId="formgroupid">
                     <Form.Label className='text-light text-center fs-4 fw-semibold font-family-codeapp'>Enter Email:</Form.Label>
-                    <Form.Control type="email" {...register("email")} placeholder="name@gmail.com" className='mw-100 mt-2'/>
+                    <Form.Control autoComplete="off" type="email" {...register("email")} placeholder="name@gmail.com" className='mw-100 mt-2'/>
                     <p className='text-danger fs-4 lh-base mt-4 fw-semibold'>{errors.email?.message}</p>
                 </Form.Group>
 
                 <Form.Group className="mt-3" controlId="formgroupid1">
                     <Form.Label className='text-light text-center fs-4 fw-semibold font-family-codeapp'>Enter Message:</Form.Label>
-                    <Form.Control as="textarea" rows={6} className='mw-100 mt-2' {...register("message")}/>
+                    <Form.Control autoComplete="off" as="textarea" rows={6} className='mw-100 mt-2' {...register("message")}/>
                     <p className='text-danger fs-4 lh-base mt-4 fw-semibold'>{errors.message?.message}</p>
                 </Form.Group>
 

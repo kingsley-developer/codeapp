@@ -1,3 +1,4 @@
+"use client"
 import {memo} from 'react'
 import notfound_scss from "../../assets/NOTFOUND/NotFound.module.scss"
 import { Fade } from "react-awesome-reveal"

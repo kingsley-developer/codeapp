@@ -67,19 +67,19 @@ async function submitForm(data: any){
             <Form onSubmit={handleSubmit(submitForm)}>
                 <Form.Group className="mt-3" controlId="formgroupid1">
                     <Form.Label className='text-light text-center fs-4 fw-semibold font-family-codeapp'>Enter Firstname:</Form.Label>
-                    <Form.Control type="text" {...register("firstname")} placeholder="firstname" className='mw-100 mt-2'/>
+                    <Form.Control autoComplete="off" type="text" {...register("firstname")} placeholder="firstname" className='mw-100 mt-2'/>
                     <p className='text-danger fs-4 lh-base mt-4 fw-semibold font-family-codeapp'>{errors.firstname?.message}</p>
                 </Form.Group>
 
                 <Form.Group className="mt-3" controlId="formgroupid2">
                     <Form.Label className='text-light text-center fs-4 fw-semibold font-family-codeapp'>Enter Lastname:</Form.Label>
-                    <Form.Control type="text" {...register("lastname")} placeholder="lastname" className='mw-100 mt-2'/>
+                    <Form.Control autoComplete="off" type="text" {...register("lastname")} placeholder="lastname" className='mw-100 mt-2'/>
                     <p className='text-danger fs-4 lh-base mt-4 fw-semibold font-family-codeapp'>{errors.lastname?.message}</p>
                 </Form.Group>
 
                 <Form.Group className="mt-3" controlId="formgroupid3">
                     <Form.Label className='text-light text-center fs-4 fw-semibold'>Enter Amount:</Form.Label>
-                    <Form.Control type="text" {...register("amount")} placeholder="5000" className='mw-100 mt-2'/>
+                    <Form.Control autoComplete="off" type="text" {...register("amount")} placeholder="5000" className='mw-100 mt-2'/>
               <p className='text-danger fs-4 lh-base mt-4 fw-semibold font-family-codeapp'>{errors.amount?.message}</p>
                 </Form.Group>
 

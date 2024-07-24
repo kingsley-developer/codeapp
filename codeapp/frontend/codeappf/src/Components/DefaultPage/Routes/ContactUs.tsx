@@ -97,13 +97,13 @@ export default memo(function ContactUs() {
             <Form ref={form} onSubmit={handleSubmit(sendEmail)}>
                 <Form.Group className="mt-5" controlId="formgroupid">
                     <Form.Label className={`text-white ${contact_scss.centerText} fs-3 fw-bold font-family-codeapp`}>Enter Email:</Form.Label>
-                    <Form.Control type="email" {...register("email")} placeholder="name@gmail.com" className='mw-100 mt-4'/>
+                    <Form.Control autoComplete="off" type="email" {...register("email")} placeholder="name@gmail.com" className='mw-100 mt-4'/>
                     <p className='text-danger text-center fs-4 lh-base mt-4 fw-semibold font-family-codeapp'>{errors.email?.message}</p>
                 </Form.Group>
 
                 <Form.Group className="mt-5" controlId="formgroupid1">
                     <Form.Label className={`text-white ${contact_scss.centerText} fs-3 fw-bold font-family-codeapp`}>Enter Message:</Form.Label>
-                    <Form.Control as="textarea" rows={10} className='mw-100 mt-4' {...register("message")}/>
+                    <Form.Control autoComplete="off" as="textarea" rows={10} className='mw-100 mt-4' {...register("message")}/>
                     <p className='text-danger text-center fs-4 lh-base mt-4 fw-semibold font-family-codeapp'>{errors.message?.message}</p>
                 </Form.Group>
 
