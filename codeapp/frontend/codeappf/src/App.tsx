@@ -6,6 +6,7 @@ import ContactUs from "./Components/DefaultPage/Routes/ContactUs"
 import PrivacyPolicy from "./Components/DefaultPage/Routes/PrivacyPolicy"
 import NotFound from "./Components/NOTFOUND/NotFound"
 import UserPage from "./Components/UserPage/Dashboard/UserPage"
+import SetUp_Profile from "./Components/Setup_Profile/SetUp_Profile"
 import {memo} from "react"
 import {createBrowserRouter,
   RouterProvider,
@@ -22,6 +23,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="privacypolicy" element={<PrivacyPolicy/>}/>
       <Route path="contactus" element={<ContactUs />} />
     </Route>
+    <Route path="setup_profile" element={<SetUp_Profile/>}/>
     <Route path="dashboard" element={<UserPage/>}/>
     <Route path="*" element={<NotFound />} />
     </Route>

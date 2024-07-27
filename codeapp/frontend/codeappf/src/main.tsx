@@ -1,6 +1,6 @@
 "use client"
 import ReactDOM from 'react-dom/client'
-import "./Components/declarefiles/declaremodules.d.ts"
+import "./@types/import.d.ts"
 import App from './App.tsx'
 import "./assets/globalcss/global.css"
 import {Store} from "./codeapp-redux-store/store.ts"

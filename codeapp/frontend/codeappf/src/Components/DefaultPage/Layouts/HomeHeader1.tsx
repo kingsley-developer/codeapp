@@ -51,19 +51,19 @@ export default memo(function HomeHeader1() {
           </ul>
   
           <div className="text-end">
-            <button type="button" className={`btn btn-outline-light me-2 fw-bold font-family-codeapp ${home_head_scss.set_gap_header_nav_btn}`}>Login</button>
-              <button onClick={() => setSignUp(o => !o)} type="button" className={`btn btn-warning fw-bold ${home_head_scss.set_gap_header_nav_btn} font-family-codeapp`}>Sign-up</button>
-                  
-                <Popup
+            <button type="button" className={`btn btn-outline-light me-2 fw-bold font-family-codeapp ${home_head_scss.set_gap_header_nav_btn}`}>Log In</button>
+              <button onClick={() => setSignUp(o => !o)} type="button" className={`btn btn-warning fw-bold ${home_head_scss.set_gap_header_nav_btn} font-family-codeapp`}>Sign Up</button>
+                  <Popup
                   open={signUP}
                   closeOnDocumentClick
                   onClose={closeSignUpModal}
                   position={"center center"}
                   modal={true}
                   nested={true}
-                  >
+                      >
+                    
                 <SignUp/>
-            </Popup>
+                </Popup>
             </div>
           </div>
                 

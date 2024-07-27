@@ -19,3 +19,14 @@ type sponsor_img_type = {
     s8: string,
     s9: string,
 }
+type userType = {
+    firstname?: string,
+    lastname?: string,
+    email?: string,
+    password?: string,
+    rooms_created?: string[],
+    rooms_created_total_users?: number,
+    rooms_created_count: number,
+    roomsjoined?: string[],
+    roomsjoined_count: number
+}

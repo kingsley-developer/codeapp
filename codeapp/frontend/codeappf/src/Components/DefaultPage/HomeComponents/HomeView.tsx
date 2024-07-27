@@ -68,7 +68,7 @@ export default memo(function HomeView() {
         <Fade cascade={true} damping={5} direction="down">
           <Row>
             <Col lg={true}>
-            <Button variant="outline-warning" size="lg">Sign up</Button>
+            <Button variant="outline-warning" size="lg">Sign Up</Button>
             </Col>
             <Col lg={true}>
             <Button variant="outline-warning" size="lg">Sign In</Button>
