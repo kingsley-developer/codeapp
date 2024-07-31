@@ -9,6 +9,7 @@ import {GoPeople} from "react-icons/go"
 import {MdEmail} from "react-icons/md"
 import Footer from "../../FOOTER/Footer";
 import SignUp from "../../Sign/SignUp";
+import SignIn from "../../Sign/SignIn";
 import Popup from "reactjs-popup"
 import "reactjs-popup/dist/index.css"
 import home_head_scss from "../../../assets/default-pgs-styles/header-styles/HomeHeader1.module.scss"
@@ -16,6 +17,8 @@ import home_head_scss from "../../../assets/default-pgs-styles/header-styles/Hom
 export default memo(function HomeHeader1() {
   const [signUP, setSignUp] = useState(false)
   const closeSignUpModal = ()=> setSignUp(false)
+   const [signIn, setSignIn] = useState(false)
+  const closeSignInModal = ()=> setSignUp(false)
   
   return (
     <div className="bg-dark">
@@ -51,7 +54,7 @@ export default memo(function HomeHeader1() {
           </ul>
   
           <div className="text-end">
-            <button type="button" className={`btn btn-outline-light me-2 fw-bold font-family-codeapp ${home_head_scss.set_gap_header_nav_btn}`}>Log In</button>
+            <button onClick={() => setSignIn(o => !o)} type="button" className={`btn btn-outline-light me-2 fw-bold font-family-codeapp ${home_head_scss.set_gap_header_nav_btn}`}>Log In</button>
               <button onClick={() => setSignUp(o => !o)} type="button" className={`btn btn-warning fw-bold ${home_head_scss.set_gap_header_nav_btn} font-family-codeapp`}>Sign Up</button>
                   <Popup
                   open={signUP}
@@ -63,6 +66,17 @@ export default memo(function HomeHeader1() {
                       >
                     
                 <SignUp/>
+                    </Popup>
+                <Popup
+                  open={signIn}
+                  closeOnDocumentClick
+                  onClose={closeSignInModal}
+                  position={"center center"}
+                  modal={true}
+                  nested={true}
+                  >
+                    
+                <SignIn/>
                 </Popup>
             </div>
           </div>

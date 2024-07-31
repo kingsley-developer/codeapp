@@ -1,19 +1,28 @@
 "use client";
-import "../../declarefiles/declaremodules.d.ts"
+import "../../../@types/import.d.ts"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import TypeEffect from "./homeviewparts/TypeEffect"
 import ImgGallery from "./homeviewparts/ImgGallery.tsx"
-import {memo} from "react"
+import {memo, useState} from "react"
 import { devimgs} from "../../../assets/imgs-paths-imports/file_imgs"
 import homeStyle_scss from "../../../assets/default-pgs-styles/homestyles/homeview.module.scss"
 import {Fade} from "react-awesome-reveal"
 import ScrollUpButton from "react-scroll-up-button"
+import SignUp from "../../Sign/SignUp.tsx";
+import SignIn from "../../Sign/SignIn.tsx";
+import Popup from "reactjs-popup"
+import "reactjs-popup/dist/index.css"
 
 export default memo(function HomeView() {
-    return (
+   const [signUP, setSignUp] = useState(false)
+  const closeSignUpModal = ()=> setSignUp(false)
+  const [signIn, setSignIn] = useState(false)
+  const closeSignInModal = ()=> setSignIn(false)
+    
+  return (
       <div>
       <Container fluid="xl">
         <TypeEffect/>
@@ -68,10 +77,10 @@ export default memo(function HomeView() {
         <Fade cascade={true} damping={5} direction="down">
           <Row>
             <Col lg={true}>
-            <Button variant="outline-warning" size="lg">Sign Up</Button>
-            </Col>
+            <Button onClick={() => setSignUp(o => !o)} variant="outline-warning" size="lg">Sign Up</Button>
+                </Col>
             <Col lg={true}>
-            <Button variant="outline-warning" size="lg">Sign In</Button>
+            <Button onClick={() => setSignIn(o => !o)} variant="outline-warning" size="lg">Sign In</Button>
             </Col>
           </Row>
           </Fade>
@@ -84,8 +93,27 @@ export default memo(function HomeView() {
     <h2>Coding Community</h2>
     </div>
     <ImgGallery/>
-    </Fade>
+          </Fade>
 </Container>
+    <Popup
+     open={signUP}
+     closeOnDocumentClick
+      onClose={closeSignUpModal}
+      position={"center center"}
+      modal={true}
+      >     
+      <SignUp/>
+      </Popup>
+      
+      <Popup
+     open={signIn}
+     closeOnDocumentClick
+      onClose={closeSignInModal}
+      position={"center center"}
+      modal={true}
+      >     
+      <SignIn/>
+    </Popup>
 </div>
 )
 })

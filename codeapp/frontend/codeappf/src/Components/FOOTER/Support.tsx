@@ -1,6 +1,6 @@
 "use client";
 import {memo, useState} from 'react'
-import "../declarefiles/declaremodules.d.ts"
+import "../../@types/import.d.ts"
 import PaystackPop from '@paystack/inline-js'
 import {useForm} from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"

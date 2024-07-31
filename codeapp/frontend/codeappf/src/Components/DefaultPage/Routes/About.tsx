@@ -1,14 +1,20 @@
 "use client";
 import {memo} from "react"
+import "../../../@types/import.d.ts"
 import about_scss from "../../../assets/default-pgs-styles/about-styles/about.module.scss"
 import about_img1 from "../../../assets/about-imgs/a.jpg"
 import about_img2 from "../../../assets/about-imgs/b.jpg"
 import about_img3 from "../../../assets/about-imgs/c.jpg"
 import { Fade } from "react-awesome-reveal"
+import ScrollUpButton from "react-scroll-up-button"
+
 
 export default memo(function About() {
     return (
       <div>
+        <ScrollUpButton
+          style={{backgroundColor: "gold", width:75}}
+        />
       <div className={`container-fluid ${about_scss.aboutMain} bg-dark`}>
         <Fade cascade={true} damping={5} direction="down">
         <img src={about_img1} className={about_scss.aboutImgsstyles} alt="Bootstrap Themes" loading="lazy"/>

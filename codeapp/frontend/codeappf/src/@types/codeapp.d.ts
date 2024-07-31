@@ -22,11 +22,19 @@ type sponsor_img_type = {
 type userType = {
     firstname?: string,
     lastname?: string,
+    username?: string,
     email?: string,
     password?: string,
+}
+
+type userRoomState = {
     rooms_created?: string[],
     rooms_created_total_users?: number,
     rooms_created_count: number,
     roomsjoined?: string[],
     roomsjoined_count: number
+}
+
+type profile_img_type = {
+    profile_img?: string
 }

@@ -3,7 +3,7 @@ import express, { Express, Request, Response } from "express"
 import "dotenv/config"
 import { Server } from "socket.io"
 import { createServer } from "http"
-
+import MiddleWare from "../middleware/middle"
 export default class API{
     static app: Express = express()
     static port = process.env.PORT
@@ -12,6 +12,24 @@ export default class API{
 
     static Server() {
         API.app.use(cors())
+        API.app.use(express.json())
+        API.app.use(express.urlencoded({extended:false}))
+        API.app.use("/create_user", MiddleWare.create_user)
+        API.app.use("/create_user_pic", MiddleWare.create_user_pic)
+        API.app.use("/get_user_info", MiddleWare.get_user_info)
+        API.app.use("/get_user_info2", MiddleWare.get_user_info2)
+
+        API.app.post("/create_user", (req: Request, res: Response) => {
+        })
+        API.app.post("/create_user_pic", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_user_info", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_user_info2", (req: Request, res: Response) => {
+        })
+        API.app.all("*", (req: Request, res: Response) => {
+            res.status(404).json({success:false, msg:"No route"})
+        })
         API.io.on("connection", (s) => {
             console.log("A user connected")
             s.on("disconnect", ()=>{
