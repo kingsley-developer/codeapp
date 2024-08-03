@@ -4,11 +4,12 @@
   "description": "This is the Nodejs web socket server of codeapp.com",
   "main": "./src/server.ts",
   "scripts": {
-    "ts": "nodemon"
+    "ws": "tsc -w",
+    "start": "nodemon"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/kingsley-developer/codeapp"
+    "url": "github.com/kingsley-developer/codeapp/codeapp/websocket-nodejs-server"
   },
   "keywords": [
     "codeapp.com",
@@ -36,7 +37,6 @@
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "emailjs": "^4.0.3",
     "express": "^4.19.2",
     "mysql2": "^3.10.3",
     "nltk": "^0.0.1",

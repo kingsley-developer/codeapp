@@ -54,26 +54,25 @@ export default memo(function SetUp_Profile() {
         const checked = await result.data
         console.log(checked)
             if (checked.check) {
-                alert_msg.success(checked.msg)    
-                const getNewUser = await axios.get(`http://localhost:8999/get_user_info/?username=${user.state.username}`)
-                const data = await getNewUser.data
+             const getNewUser = await axios.get(`http://localhost:8999/get_user_info/?username=${user.state.username}&password=${user.state.password}&type=signup`)
+                const data: signData = await getNewUser.data
                 console.log(data)
 
           if (data.check) {
             alert_msg.success(data.msg)
-              toDashboard("/dashboard", { state: { userdata: data } })
-              setCheck(false)
+            toDashboard("/dashboard", {state:{userdata: data}})
+            setCheck(false)
           }
-          else {
+          else{
+            console.log(`data check ${data.check}`)
             alert_msg.error(data.msg)
             setCheck(false)
-          }     
-            }
-            else {
-                alert_msg.error(checked.msg)
-                setCheck(false)  
-            }
-        
+          }
+        }     
+        else {
+            alert_msg.error(checked.msg)
+            setCheck(false)  
+        }
         }
         else{
             alert_msg.error("Please upload or take a picture before you go to the dashboard")

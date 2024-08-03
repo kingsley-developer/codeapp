@@ -14,9 +14,9 @@ export default class MiddleWare{
         const newUser = await DB.Create_User(firstname, lastname, username, email, password)
         
         if (newUser.check) {
-            return res.status(201).json(newUser)
+            return res.status(200).json(newUser)
         }
-        res.status(404).json(newUser)
+        res.status(200).json(newUser)
         next()
     }
 
@@ -27,27 +27,17 @@ export default class MiddleWare{
         if (newUser_Img.check) {
             return res.status(200).json(newUser_Img)
         }
-        res.status(404).json(newUser_Img)
+        res.status(200).json(newUser_Img)
         next()
     }
 
-    static async get_user_info(req: Request, res: Response, next: NextFunction) {
-        const { username} = req.query
-        const user = await DB.Get_User_Info(String(username))
+       static async get_user_info(req: Request, res: Response, next: NextFunction) {
+        const { username, password, type } = req.query
+        const user = await DB.Get_User_Info(String(username), String(password), String(type))
         if (user.check) {
             return res.status(200).json(user)
         }
-        res.status(404).json(user)
-        next()
-    }
-       static async get_user_info2(req: Request, res: Response, next: NextFunction) {
-        const { username, password } = req.query
-        console.log(req.query)
-        const user = await DB.Get_User_Info2(String(username), String(password))
-        if (user.check) {
-            return res.status(200).json(user)
-        }
-        res.status(404).json(user. )
+        res.status(200).json(user)
         next()
     }
 }

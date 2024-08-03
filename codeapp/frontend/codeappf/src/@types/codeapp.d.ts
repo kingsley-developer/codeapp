@@ -38,3 +38,24 @@ type userRoomState = {
 type profile_img_type = {
     profile_img?: string
 }
+
+type signData = {
+    data: [
+        {
+            user_id: number,
+            first_name: string,
+            last_name: string,
+            user_name: string,
+            user_password: string,
+            user_email: string,
+            user_img: string
+        }
+    ],
+    msg: string,
+    check: boolean
+}
+
+type get_user_signup = {
+    check: boolean,
+    msg: string
+}

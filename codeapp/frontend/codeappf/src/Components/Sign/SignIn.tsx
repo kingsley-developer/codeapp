@@ -16,7 +16,6 @@ const schema = yup.object({
 }).required()
 
 export default memo(function SignIn() {
-  const [check, setCheck] = useState(false)
   const alert_msg = useAlert()
   const toDashboard = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -38,40 +37,28 @@ export default memo(function SignIn() {
       }
     })
     setLoading(true)
-    setCheck(true)   
 }
 
   useEffect(() => {
     async function getExistUser() {
-      try{
-      if(check){
-        const getExistUser = await axios.get(`http://localhost:8999/get_user_info2/?username=${loginUser.username}&password=${loginUser.password}`)
-        const data = await getExistUser.data
+      if(loading){
+        const getExistUser = await axios.get(`http://localhost:8999/get_user_info/?username=${loginUser.username}&password=${loginUser.password}&type=none`)
+        const data: signData = await getExistUser.data
 
-        console.log(data, {length: data.data.length}, {d: data.data})
-
-          if (data.data.length > 0) {
-            alert_msg.success(`Successfully signed in ${loginUser.username}`)
-            setCheck(false)
+          if (data.check) {
+            alert_msg.success(data.msg)
             toDashboard("/dashboard", {state:{userdata: data}})
             setLoading(false)
           }
-          else {
-            alert_msg.error("No user found")
-            alert_msg.success(data.msg2)
-            setCheck(false)
+          else{
+            console.log(`data check ${data.check}`)
+            alert_msg.error(data.msg)
             setLoading(false)
           }
         }
-      }
-      catch (err: any) {
-        alert_msg.error(String(err))
-        setCheck(false)
-        
-        }
     }
     getExistUser()
-  }, [check])
+  }, [loading])
 
   return (
     <div>

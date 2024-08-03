@@ -30,7 +30,6 @@ export default memo(function SignUp() {
     password: "",
   }
 
-  const [check, setCheck] = useState(false)
   const alert_msg = useAlert()
   const toSetUpProfile = useNavigate()
   const dispatch = useAppDis()
@@ -52,19 +51,16 @@ export default memo(function SignUp() {
 
         dispatch(signup(user))
         setLoading(true)
-        setCheck(true)
     }
     else{
       alert("Password those not match")
       setLoading(false)
-      setCheck(false)
     }
   }
 
   useEffect(() => {
     async function submitNewUser() {
-      try {
-        if (check) {
+        if (loading) {
         const result = await axios.post("http://localhost:8999/create_user", {
            data: JSON.stringify({
             firstname: toServer.firstname,
@@ -74,30 +70,20 @@ export default memo(function SignUp() {
             password: toServer.password,
           })
         })
-        const checked = await result.data
-        console.log(checked)
+          const checked: get_user_signup = await result.data
           if (checked.check) {
             alert_msg.success(checked.msg)
-            setCheck(false)
-            toSetUpProfile("/setup_profile", { state: { username: toServer.username} })
+            toSetUpProfile("/setup_profile", { state: { username: toServer.username,password: toServer.password} })
             setLoading(false)
         }
         else {
-          alert_msg.error(checked.msg)
-          setCheck(false)  
+          alert_msg.error(checked.msg) 
           setLoading(false)
         }  
-        }
-      }
-      catch (err: any) {
-          alert_msg.error("Encounter an error on the server, server err msg: "+String(err))
-          setCheck(false) 
-          setLoading(false)
-      }
-      
+        }      
     }
     submitNewUser()
-    }, [check])
+    }, [loading])
 
   return (
     <div>
