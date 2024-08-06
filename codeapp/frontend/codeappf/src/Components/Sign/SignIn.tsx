@@ -41,21 +41,26 @@ export default memo(function SignIn() {
 
   useEffect(() => {
     async function getExistUser() {
-      if(loading){
+      try {
+       if(loading){
         const getExistUser = await axios.get(`http://localhost:8999/get_user_info/?username=${loginUser.username}&password=${loginUser.password}&type=none`)
         const data: signData = await getExistUser.data
 
           if (data.check) {
             alert_msg.success(data.msg)
-            toDashboard("/dashboard", {state:{userdata: data}})
+            toDashboard(`/dashboard/${data.data[0].user_id}`, {state:{userdata: data}})
             setLoading(false)
           }
           else{
-            console.log(`data check ${data.check}`)
             alert_msg.error(data.msg)
             setLoading(false)
           }
-        }
+        } 
+      }
+      catch (e: any) {
+        alert_msg.error(String(e))
+        setLoading(false)
+      }
     }
     getExistUser()
   }, [loading])
@@ -63,7 +68,7 @@ export default memo(function SignIn() {
   return (
     <div>
     <div className={`bg-dark text-warning text-center container ${signin_scss.signup_popup_scroll}`}>
-        <h2 className="text-dark fs-4 fw-semibold badge rounded-pill bg-warning font-family-codeapp mt-1 w-50">Sign In</h2>
+        <h2 className="text-dark fs-4 fw-semibold badge rounded-pill bg-warning font-family-codeapp mt-5 w-50">Sign In</h2>
           <Form onSubmit={handleSubmit(submitData)}>
                 <Form.Group className="mt-5" controlId="formgroupid2">
                     <Form.Label className='text-light text-center fs-4 fw-semibold font-family-codeapp'>Enter Username:</Form.Label>

@@ -60,7 +60,8 @@ export default memo(function SignUp() {
 
   useEffect(() => {
     async function submitNewUser() {
-        if (loading) {
+      try{
+       if (loading) {
         const result = await axios.post("http://localhost:8999/create_user", {
            data: JSON.stringify({
             firstname: toServer.firstname,
@@ -80,7 +81,13 @@ export default memo(function SignUp() {
           alert_msg.error(checked.msg) 
           setLoading(false)
         }  
-        }      
+        }
+      }
+      catch(e:any){
+         alert_msg.error(String(e)) 
+          setLoading(false)
+      }
+              
     }
     submitNewUser()
     }, [loading])

@@ -5,9 +5,15 @@ import About from "./Components/DefaultPage/Routes/About"
 import ContactUs from "./Components/DefaultPage/Routes/ContactUs"
 import PrivacyPolicy from "./Components/DefaultPage/Routes/PrivacyPolicy"
 import NotFound from "./Components/NOTFOUND/NotFound"
-import UserPage from "./Components/UserPage/Dashboard/UserPage"
+import RightPanel from "./Components/UserPage/Dashboard/RightPanel"
 import SetUp_Profile from "./Components/Setup_Profile/SetUp_Profile"
 import {memo} from "react"
+import Settings from "./Components/UserPage/Dashboard/Routes/Settings"
+import Rooms from "./Components/UserPage/Dashboard/Routes/Rooms"
+import Notification from "./Components/UserPage/Dashboard/Routes/Notification"
+import CreatedRooms from "./Components/UserPage/Dashboard/Routes/CreatedRooms"
+import JoinedRooms from "./Components/UserPage/Dashboard/Routes/JoinedRooms"
+import Dashboard from "./Components/UserPage/Dashboard/Routes/Dashboard"
 import {createBrowserRouter,
   RouterProvider,
   Route,
@@ -24,7 +30,14 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="contactus" element={<ContactUs />} />
     </Route>
     <Route path="setup_profile" element={<SetUp_Profile/>}/>
-    <Route path="dashboard" element={<UserPage/>}/>
+    <Route path="dashboard/:userid" element={<RightPanel />}>
+      <Route index element={<Dashboard />} />
+      <Route path="notification" element={<Notification />} />
+      <Route path="createdrooms" element={<CreatedRooms/>}/>
+      <Route path="joinedrooms" element={<JoinedRooms/>}/>
+    <Route path="rooms" element={<Rooms/>}/>
+    <Route path="settings" element={<Settings/>}/>
+    </Route>
     <Route path="*" element={<NotFound />} />
     </Route>
 ))

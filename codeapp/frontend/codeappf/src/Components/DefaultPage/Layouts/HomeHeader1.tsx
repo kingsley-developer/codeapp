@@ -32,22 +32,22 @@ export default memo(function HomeHeader1() {
         <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0">
             <li className={home_head_scss.header_text_style}>
-              <NavLink to="/" end className={({isActive})=> isActive ? `font-family-codeapp nav-link fw-bold px-2 text-warning ${home_head_scss.set_gap_header_nav}` : `font-family-codeapp nav-link fw-bold px-2 text-white ${home_head_scss.set_gap_header_nav}`}
+              <NavLink to="/" className={({isActive})=> isActive ? `font-family-codeapp nav-link fw-bold px-2 text-warning ${home_head_scss.set_gap_header_nav}` : `font-family-codeapp nav-link fw-bold px-2 text-white ${home_head_scss.set_gap_header_nav}`}
             > <IoMdHome className={`${home_head_scss.bi} d-block mx-auto`}/> Home
             </NavLink>
             </li>
             <li className={home_head_scss.header_text_style}>
-              <NavLink to="about" end className={({isActive})=> isActive ? `font-family-codeapp nav-link fw-bold px-2 text-warning ${home_head_scss.set_gap_header_nav}` : `font-family-codeapp nav-link fw-bold px-2 text-white ${home_head_scss.set_gap_header_nav}`}
+              <NavLink to="about" className={({isActive})=> isActive ? `font-family-codeapp nav-link fw-bold px-2 text-warning ${home_head_scss.set_gap_header_nav}` : `font-family-codeapp nav-link fw-bold px-2 text-white ${home_head_scss.set_gap_header_nav}`}
             ><GoPeople className={`${home_head_scss.bi} d-block mx-auto`}/>About
             </NavLink>
             </li>
             <li className={home_head_scss.header_text_style}>
-            <NavLink to="privacypolicy" end className={({isActive})=> isActive ? `font-family-codeapp nav-link fw-bold px-2 text-warning ${home_head_scss.set_gap_header_nav}` : `font-family-codeapp nav-link fw-bold px-2 text-white ${home_head_scss.set_gap_header_nav}`}
+            <NavLink to="privacypolicy" className={({isActive})=> isActive ? `font-family-codeapp nav-link fw-bold px-2 text-warning ${home_head_scss.set_gap_header_nav}` : `font-family-codeapp nav-link fw-bold px-2 text-white ${home_head_scss.set_gap_header_nav}`}
             ><FaUserSecret className={`${home_head_scss.bi} d-block mx-auto`}/>Privacy Policy
             </NavLink>
             </li>
             <li className={home_head_scss.header_text_style}>
-              <NavLink to="contactus" end className={({isActive})=> isActive ? `font-family-codeapp nav-link fw-bold px-2 text-warning ${home_head_scss.set_gap_header_nav}` : `font-family-codeapp nav-link fw-bold px-2 text-white ${home_head_scss.set_gap_header_nav}`}
+              <NavLink to="contactus" className={({isActive})=> isActive ? `font-family-codeapp nav-link fw-bold px-2 text-warning ${home_head_scss.set_gap_header_nav}` : `font-family-codeapp nav-link fw-bold px-2 text-white ${home_head_scss.set_gap_header_nav}`}
             ><MdEmail className={`${home_head_scss.bi} d-block mx-auto`}/>Contact Us
             </NavLink>
             </li>

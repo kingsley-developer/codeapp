@@ -1,0 +1,25 @@
+.panel_con{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-between;
+    padding-top: 60px;
+    height: 300vh;
+    width: 100vw;
+}
+
+.panel_route{
+    position: absolute;
+    top: 0;
+    width: 77vw;
+    height: 100vh;
+    float: left;
+}
+.panel_links > li{
+    list-style-type: none;
+    padding: 15px;
+}
+.panel_links > li > a{
+    text-decoration: none;
+}

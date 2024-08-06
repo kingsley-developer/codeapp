@@ -52,19 +52,16 @@ export default memo(function SetUp_Profile() {
             })
         })
         const checked = await result.data
-        console.log(checked)
-            if (checked.check) {
+        if (checked.check) {
              const getNewUser = await axios.get(`http://localhost:8999/get_user_info/?username=${user.state.username}&password=${user.state.password}&type=signup`)
-                const data: signData = await getNewUser.data
-                console.log(data)
+            const data: signData = await getNewUser.data
 
           if (data.check) {
             alert_msg.success(data.msg)
-            toDashboard("/dashboard", {state:{userdata: data}})
+            toDashboard(`/dashboard/${data.data[0].user_id}`, {state:{userdata: data}})
             setCheck(false)
           }
           else{
-            console.log(`data check ${data.check}`)
             alert_msg.error(data.msg)
             setCheck(false)
           }
@@ -77,7 +74,7 @@ export default memo(function SetUp_Profile() {
         else{
             alert_msg.error("Please upload or take a picture before you go to the dashboard")
             setCheck(false)
-            }
+        }
         }
         catch (err: any) {
             alert_msg.error(String(err))
