@@ -4,7 +4,7 @@ import signup_scss from "../../assets/Sign/SignUp.module.scss"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import * as yup from "yup"
-import {useForm} from "react-hook-form"
+import {  useForm} from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
 import { useAlert } from 'react-alert';
 import {useNavigate} from "react-router-dom"
@@ -31,7 +31,7 @@ export default memo(function SignUp() {
   }
 
   const alert_msg = useAlert()
-  const toSetUpProfile = useNavigate()
+  const toDashboard = useNavigate()
   const dispatch = useAppDis()
   const [loading, setLoading] = useState(false)
   const submitUser = useAppSel(state => state.userdata)
@@ -71,11 +71,58 @@ export default memo(function SignUp() {
             password: toServer.password,
           })
         })
+
+
           const checked: get_user_signup = await result.data
           if (checked.check) {
             alert_msg.success(checked.msg)
-            toSetUpProfile("/setup_profile", { state: { username: toServer.username,password: toServer.password} })
+
+            const getNewUser = await axios.get(`http://localhost:8999/get_user_info/?username=${toServer.username}&password=${toServer.password}&type=signup`)
+            const data: signData = await getNewUser.data
+
+          if (data.check) {
+            alert_msg.success(data.msg)
+
+            const signup_msg = `
+            Thank you for signing up  to codeapp.com user: ${data.data[0].user_name}
+            `
+            const signin_msg = `
+            Thank you for signing in  to codeapp.com user: ${data.data[0].user_name}
+            `
+
+            const result2 = await axios.post("http://localhost:8999/add_msgs", {
+              data: JSON.stringify({
+                id:data.data[0].user_id,
+                msg_name: "Sign Up Message",
+                msg_des:signup_msg
+             })
+           })
+           const res:AddMsgType = await result2.data
+           if(res.check){
+            const result3 = await axios.post("http://localhost:8999/add_msgs", {
+              data: JSON.stringify({
+                id:data.data[0].user_id,
+                msg_name: "Sign In Message",
+                msg_des:signin_msg
+             })
+           })
+           const res2:AddMsgType = await result3.data
+         if(res2.check){
+          localStorage.setItem("accessToken", data.accesstoken)
+          localStorage.setItem("user_id", String(data.data[0].user_id))
+          toDashboard(`/dashboard/${data.data[0].user_id}`, {state:{type: "signup", exist:true}})
+          setLoading(false)
+         }
+           }
+        
+           else{
             setLoading(false)
+           }
+          }
+          else{
+            alert_msg.error(data.msg)
+            setLoading(false)
+          }
         }
         else {
           alert_msg.error(checked.msg) 
@@ -84,7 +131,7 @@ export default memo(function SignUp() {
         }
       }
       catch(e:any){
-         alert_msg.error(String(e)) 
+          alert_msg.error(String(e)) 
           setLoading(false)
       }
               

@@ -1,5 +1,5 @@
 "use client";
-import {memo} from "react"
+import {memo, useEffect} from "react"
 import "../../../@types/import.d.ts"
 import about_scss from "../../../assets/default-pgs-styles/about-styles/about.module.scss"
 import about_img1 from "../../../assets/about-imgs/a.jpg"
@@ -7,9 +7,26 @@ import about_img2 from "../../../assets/about-imgs/b.jpg"
 import about_img3 from "../../../assets/about-imgs/c.jpg"
 import { Fade } from "react-awesome-reveal"
 import ScrollUpButton from "react-scroll-up-button"
+import { useNavigate } from "react-router-dom"
 
 
 export default memo(function About() {
+    const route = useNavigate()
+    const getAccessToken = localStorage.getItem("accessToken")
+    const user_id = localStorage.getItem("user_id")
+    console.log(user_id, getAccessToken)
+
+    useEffect(() => {
+    async function validate_User() {
+       if (getAccessToken && user_id) {
+    route(`/dashboard/${user_id}`)
+    return null
+  }
+  route("/about")   
+    }
+    validate_User()
+  }, [])
+
     return (
       <div>
         <ScrollUpButton

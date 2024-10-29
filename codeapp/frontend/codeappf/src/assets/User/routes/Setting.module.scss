@@ -1,0 +1,29 @@
+.panel_con{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: 300vh;
+    width: 120vw;
+    border-left: 4px solid gold;
+    border-right: 4px solid gold;
+    border-bottom: 4px solid gold;
+    border-top: 4px solid gold;
+}
+
+.panel_route{
+    position: absolute;
+    top: 0;
+    left: 550px;
+    width: 71vw;
+    height: 100vh;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    float: left;
+}
+.panel_links > li{
+    list-style-type: none;
+    padding-top: 26px;
+}
+.panel_links > li > a{
+    text-decoration: none;
+}

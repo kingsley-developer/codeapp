@@ -1,6 +1,6 @@
 "use client";
 import "../../../@types/import.d.ts"
-import {memo, useState} from "react"
+import {memo, useState, useEffect} from "react"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import {useRef} from "react"
@@ -13,6 +13,7 @@ import contact_scss from "../../../assets/default-pgs-styles/contact-styles/Cont
 import contact_img1 from "../../../assets/contactus-imgs/young-business-women-having-casual-meeting-at-coffee-shop-austockphoto-000083275.jpg"
 import { Fade } from "react-awesome-reveal"
 import ScrollUpButton from "react-scroll-up-button"
+import { useNavigate } from "react-router-dom"
 
 const schema = yup.object({
     email: yup.string().email("Email must be a valid email").required("Please provide an email address"),
@@ -21,7 +22,11 @@ const schema = yup.object({
 
 
 export default memo(function ContactUs() {
-     const alert_msg = useAlert()
+    const alert_msg = useAlert()
+    const route = useNavigate()
+    const getAccessToken = localStorage.getItem("accessToken")
+    const user_id = localStorage.getItem("user_id")
+    console.log(user_id, getAccessToken)
 
     const [loading, setLoading] = useState(false)
 
@@ -48,6 +53,17 @@ export default memo(function ContactUs() {
             }
         )
     }
+
+    useEffect(() => {
+    async function validate_User() {
+       if (getAccessToken && user_id) {
+    route(`/dashboard/${user_id}`)
+    return null
+  }
+  route("/contactus")   
+    }
+    validate_User()
+  }, [])
 
     return (
         <div>

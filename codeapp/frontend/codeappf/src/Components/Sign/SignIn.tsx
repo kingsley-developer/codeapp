@@ -48,8 +48,24 @@ export default memo(function SignIn() {
 
           if (data.check) {
             alert_msg.success(data.msg)
-            toDashboard(`/dashboard/${data.data[0].user_id}`, {state:{userdata: data}})
+            const signin_msg = `
+            Thank you for signing in  to codeapp.com user: ${data.data[0].user_name}
+            `
+            const result3 = await axios.post("http://localhost:8999/add_msgs", {
+              data: JSON.stringify({
+                id:data.data[0].user_id,
+                msg_name: "Sign In Message",
+                msg_des:signin_msg
+             })
+           })
+           const res2:AddMsgType = await result3.data
+           if(res2.check){
+            localStorage.setItem("accessToken", data.accesstoken)
+            localStorage.setItem("user_id", String(data.data[0].user_id))
+            toDashboard(`/dashboard/${data.data[0].user_id}`, {state:{exist:true}})
             setLoading(false)
+           }
+            
           }
           else{
             alert_msg.error(data.msg)

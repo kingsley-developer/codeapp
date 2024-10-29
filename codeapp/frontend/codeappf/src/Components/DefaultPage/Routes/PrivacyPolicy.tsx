@@ -1,5 +1,5 @@
 "use client";
-import {memo} from "react"
+import {memo, useEffect} from "react"
 import { Fade } from "react-awesome-reveal"
 import privacy_scss from "../../../assets/default-pgs-styles/privacy-styles/privacy.module.scss"
 import privacy_img1 from "../../../assets/policy-imgs/a.jpg"
@@ -7,8 +7,23 @@ import "../../../@types/import.d.ts"
 import ScrollUpButton from "react-scroll-up-button"
 import Button from "react-bootstrap/Button"
 import { Link} from "react-router-dom"
-
+import { useNavigate } from "react-router-dom"
 export default memo(function PrivacyPolicy() {
+  const route = useNavigate()
+  const getAccessToken = localStorage.getItem("accessToken")
+  const user_id = localStorage.getItem("user_id")
+  console.log(user_id, getAccessToken)
+  useEffect(() => {
+    async function validate_User() {
+       if (getAccessToken && user_id) {
+    route(`/dashboard/${user_id}`)
+    return null
+  }
+  route("/privacypolicy")   
+    }
+    validate_User()
+  }, [])
+  
   return (
     <div className={privacy_scss.privacy_margin}>
        <ScrollUpButton

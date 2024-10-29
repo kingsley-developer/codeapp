@@ -27,16 +27,25 @@ type userType = {
     password?: string,
 }
 
-type userRoomState = {
-    rooms_created?: string[],
-    rooms_created_total_users?: number,
-    rooms_created_count: number,
-    roomsjoined?: string[],
-    roomsjoined_count: number
+type userForeverApp = {
+    user_id: number,
+    first_name: string,
+    last_name: string,
+    user_name: string,
+    user_password: string,
+    user_email: string,
 }
 
-type profile_img_type = {
-    profile_img?: string
+type userRoomDetails = {
+    roomname?: string,
+    room_des?: string,
+    room_tag?: string,
+    room_visible?: boolean,
+    roomsjoined?: string[],
+    rooms_created_total_users?: number
+    rooms_created_count?: number,
+    roomsjoined_count?: number,
+    rooms_created?: string[],
 }
 
 type signData = {
@@ -48,14 +57,96 @@ type signData = {
             user_name: string,
             user_password: string,
             user_email: string,
-            user_img: string
+        }
+    ],
+    accesstoken: string,
+    msg: string,
+    check: boolean
+}
+
+type savedUserData = {
+    data: [
+        {
+            user_id: number,
+            first_name: string,
+            last_name: string,
+            user_name: string,
+            user_password: string,
+            user_email: string,
         }
     ],
     msg: string,
     check: boolean
 }
 
+type userRoomData = {
+    data: [
+        {
+           created_room_id: int,
+            room_name: string,
+            room_des: string,
+            room_tag: string,
+            room_visibility: boolean,
+            room_total_usr: int, 
+        }
+    ],
+    check: boolean
+}
+
+type SearchData = {
+    created_room_id: int,
+     room_name: string,
+     room_des: string,
+     room_tag: string,
+     room_visibility: boolean,
+     room_total_usr: int, 
+ }
+
+ type itemsType = {
+    id: number,
+    name: string
+}[]
+type AddMsgType = {
+    check:boolean
+}
+type AllRoomsData = {
+    data: [
+        {
+           created_room_id: int,
+            room_name: string,
+            room_des: string,
+            room_tag: string,
+            room_visibility: boolean,
+            room_total_usr: int, 
+        }
+    ],
+    check: boolean
+}
+
+type userRoomType = {
+    created_room_id: int,
+    room_name: string,
+    room_des: string,
+    room_tag: string,
+    room_visibility: boolean,
+    room_total_usr: int, 
+}
+
 type get_user_signup = {
+    check: boolean,
+    msg: string
+}
+
+type validateRoomType = {
+    check: boolean,
+    data: [
+        {
+            room_name: string,
+        }
+    ]
+}
+
+type createRoomType = {
     check: boolean,
     msg: string
 }
