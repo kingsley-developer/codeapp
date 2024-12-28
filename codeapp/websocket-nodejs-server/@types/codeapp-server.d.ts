@@ -53,6 +53,16 @@ type AddMsgType = {
 type DelAllMsgType = {
     check: boolean
 }
+type GetJoin = {
+    check: boolean
+}
 type DelSpecificMsgType = {
     check: boolean
+}
+type DelSpecificMsgType = {
+    check: boolean
+}
+type GetUsersCountType = {
+    check: boolean,
+    count: number | null
 }

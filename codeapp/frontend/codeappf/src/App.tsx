@@ -20,6 +20,7 @@ import {createBrowserRouter,
 } from "react-router-dom"
 import RoomPage from "./Components/UserPage/Dashboard/Routes/CreatedRoomRoutes/RoomPage"
 import {asyncRoom} from "./Preload"
+import JoinRoomPage from "./Components/UserPage/Dashboard/Routes/AllRoomRoutes/JoinRoomPage"
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route>
@@ -37,7 +38,9 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="createdrooms" element={<CreatedRooms/>}>
       <Route path=":roomid" element={<RoomPage/>}/>
       </Route>
-      <Route path="joinedrooms" element={<JoinedRooms/>}/>
+      <Route path="joinedrooms" element={<JoinedRooms/>}>
+      <Route path=":roomid" element={<JoinRoomPage/>}/>
+      </Route>
     <Route path="rooms" element={<Rooms/>}/>
     <Route path="settings" element={<Settings/>}/>
     </Route>

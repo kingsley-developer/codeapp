@@ -1,12 +1,11 @@
 import React, {memo, useState, useEffect} from 'react'
-import route from "../../../../../assets/User/routes/createdroomroutes/createdRoomPage.module.scss"
+import route from "../../../../../assets/User/routes/allroomroutes/JoinRoomPage.module.scss"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Socket from '../../../../../ClientSocket'
 import axios from "axios"
 
-
-export default memo(function RoomPage() {
+export default memo(function JoinRoomPage() {
     const room_id = localStorage.getItem("roomId")
     const user_id = localStorage.getItem("user_id")
     const getAccessToken = localStorage.getItem("accessToken")
@@ -18,8 +17,6 @@ export default memo(function RoomPage() {
         msg:"",
         typeofmmsg:""
     }]) 
-
-    console.log(msgData, " msg usestate")
 
     const msg_setup = msgData.map((data, index)=>{
         console.log(data, " trying to see something")
@@ -67,7 +64,7 @@ export default memo(function RoomPage() {
                 else{
                     setMake(false)
                 }
-                }
+            }
                 else{
                     setMake(false)
                 }
@@ -82,6 +79,7 @@ export default memo(function RoomPage() {
     useEffect(()=>{
         async function getRoomMsgs(){
             try{
+                if(user_id && getAccessToken){
             if(make){
                 Socket.on("receiver_msg", async(data:string)=>{        
                     const result2 = await axios.post("http://localhost:8999/insert_room_msg", {
@@ -94,7 +92,6 @@ export default memo(function RoomPage() {
                      })
                      
                      const data3 = await result2.data
-                     console.log(data3)
                      if(data3.check){
                      const result3 = await axios.get(`http://localhost:8999/get_room_msgs/?created_room_id=${room_id}`)
                      const data4 = await  result3.data
@@ -113,6 +110,7 @@ export default memo(function RoomPage() {
                     setMsgData(data5.data)
                 }
             }
+            }
         }
             catch(e:any){
                 console.log(e)
@@ -125,7 +123,7 @@ export default memo(function RoomPage() {
     <div className={`fs-4 text-white container`}>
         <div>
             <div className={`${route.chat_con} text-wrap text-break`}>
-            <h1 className={`fs-4 text-white`}>CreatedRoomPage {room_id} {room_name}</h1>
+            <h1 className={`fs-4 text-white`}>JoinRoomPage {room_id} {room_name}</h1>
             <div className={`${route.chat_con2} text-wrap text-break`}>
             {msg_setup}
             </div>

@@ -33,12 +33,13 @@ export default memo(function CreatedRooms() {
   const [showRoom, setShowRoom] = useState(false)
   const [eMsg, setEMsg] = useState("")
   const [loading, setLoading] = useState(false)
-  const room_id = localStorage.getItem("roomId")
   
-  const openCreatedRoom = useCallback((id:number)=>{
+  const openCreatedRoom = useCallback((id:number, room_name:string)=>{
     if(getAccessToken && user_id){
       localStorage.setItem("roomId", String(id))
+      localStorage.setItem("room_name", room_name)
       setShowRoom(true)
+      const room_id = localStorage.getItem("roomId")
       toOpenRoom(`/dashboard/${user_id}/createdrooms/${Number(room_id)}`)
     }
     
@@ -63,7 +64,7 @@ export default memo(function CreatedRooms() {
         <Card.Footer>
           Room Total users: {data.room_total_usr}
         </Card.Footer>
-        <Button onClick={()=>openCreatedRoom(data.created_room_id)} variant="warning" className={`mb-4 w-50 text-center fw-bold ${route.create_btn}`}>View Room</Button>
+        <Button onClick={()=>openCreatedRoom(data.created_room_id,data.room_name)} variant="warning" className={`mb-4 w-50 text-center fw-bold ${route.create_btn}`}>View Room</Button>
       </Card>
       </Fade>
       </div>
@@ -81,6 +82,7 @@ export default memo(function CreatedRooms() {
       try{
         if (getAccessToken && user_id) {
           setLoading(true)
+          setEMsg("")
             const getUserRooms = await axios.get(`http://localhost:8999/get_created_rooms/?user_id=${Number(user_id)}`)
             const data:userRoomData = await getUserRooms.data
           if (data.check) {
@@ -131,7 +133,7 @@ export default memo(function CreatedRooms() {
     }
   return (
       <div className="container">
-        <Card className={`text-center w-75 ${route.create_Room_card_main}`}>
+        <Card className={`text-center w-75 mt-5 ${route.create_Room_card_main}`}>
         <Card.Header className="text-dark bg-warning fs-3 lh-base font-family-codeapp">Create Room</Card.Header>
         <Card.Body>
           <Card.Title className="text-white fs-4 lh-base fw-semibold font-family-codeapp">Get Started By Creating A Room</Card.Title>

@@ -1,7 +1,6 @@
 create database codeapp_db;
 use codeapp_db;
-insert into user_table(first_name,last_name,user_name,user_password,user_email,refresh_token)
-values ("2", "2","2","2","2@gmail.com", "2");
+
 create table user_table (user_id int auto_increment,
 first_name varchar(300) not null,
 last_name varchar(300) not null,
@@ -10,6 +9,7 @@ user_password text(4000000000) not null,
 user_email varchar(300) not null,
 refresh_token text(4000000000) null,
 primary key (user_id));
+select * from user_table;
 
 create table user_room_created (created_room_id int auto_increment,
 user_id int not null,
@@ -23,6 +23,17 @@ foreign key (user_id)
 references user_table(user_id),
 primary key (created_room_id));
 
+create table user_room_joined (joined_room_id int auto_increment,
+user_id int not null,
+created_room_id int null null,
+room_name varchar(760) not null,
+room_des text(4000000000) not null,
+room_tag text(4000000000) not null,
+room_visibility boolean not null,
+constraint fk_usr_j
+foreign key (created_room_id)
+references user_room_created(created_room_id),
+primary key (joined_room_id));
 
 create table user_msg (msg_id int auto_increment,
 user_id int not null,
@@ -32,17 +43,22 @@ constraint fk_usr_m
 foreign key (user_id)
 references user_table(user_id),
 primary key (msg_id));
-
-select * from user_msg;
-describe user_msg;
-show tables;
 select * from user_table;
-select * from user_table where first_name = "4'" or '1 = 1';
-drop table user_table;
-drop table user_msg;
-show tables;
-select * from user_room_created where room_name like "%fav%";
-drop table user_room_created;
 
-insert into user_room_created(user_id,room_name,room_des,room_tag,room_visibility,room_total_usr)
-values (3, "king","baby mmmk","mmmk",false, 2);
+create table user_room_msg (room_msg_id int auto_increment,
+user_id int not null,
+created_room_id int null null,
+msg varchar(500) not null,
+typeofmmsg varchar(100) not null,
+constraint fk_usr_rm
+foreign key (created_room_id)
+references user_room_created(created_room_id),
+primary key (room_msg_id));
+
+select * from user_room_msg;
+
+drop table user_room_created;
+drop table user_room_joined;
+drop table user_room_msg;
+drop table user_msg;
+drop table user_table;

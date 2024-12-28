@@ -1,21 +1,20 @@
 "use client"
-import {memo, useEffect, useState} from 'react'
+import {memo, useEffect, useState, useCallback} from 'react'
 import route from "../../../../assets/User/routes/Rooms.module.scss"
 import axios from "axios"
 import { ColorRing } from "react-loader-spinner"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import {Fade} from "react-awesome-reveal"
-import Popup from "reactjs-popup"
 import {ReactSearchAutocomplete} from "react-search-autocomplete"
-import JoinRoomPreview from './AllRoomRoutes/JoinRoomPreview'
+import { useAlert } from 'react-alert';
+import Socket from "../../../../ClientSocket"
 
 export default memo(function Rooms() {
-  const [join, setJoin] = useState(false)
-  const closeJoinModal = () => setJoin(false)
   const [loading, setLoading] = useState(false)
   const [auth_Msg, setAM] = useState("")
   const [err_Msg, setE] = useState("")
+  const alert_msg = useAlert()
   const getAccessToken = localStorage.getItem("accessToken")
   const user_id = localStorage.getItem("user_id")
   const [room, setRoom] = useState([{
@@ -28,56 +27,145 @@ export default memo(function Rooms() {
   }])
   const [show, setShow] = useState(false)
 
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([
+    {
 
-  function onS(item:any){
+    }
+  ])
 
-    console.log(item)
-
+  const searchStyle = {
+    fontSize:"15px"
   }
-  async function onSe(text:string, result:any){
+
+  const onS = useCallback(async (item:any)=>{
     try{
       if (getAccessToken && user_id) {
-      const fetching = await axios.get(`http://localhost:8999/get_all_rooms_on_search/?room_name_search=${text}`)
+      const fetching = await axios.get(`http://localhost:8999/get_all_rooms_on_select/?room_name=${item.name}`)
       const data:AllRoomsData = fetching.data
-      console.log(`ResultLet see: ${text}`)
-      console.log(data)
       if(data.check){
         setRoom(data.data)
       }
       }
     }
     catch(e:any){
-      console.log(e)
+      setRoom([])
     }
-  }
+  }, [])
+
+  const onH = useCallback(async (item:any)=>{
+    try{
+      if (getAccessToken && user_id) {
+      const fetching = await axios.get(`http://localhost:8999/get_all_rooms_on_select/?room_name=${item.name}`)
+      const data:AllRoomsData = fetching.data
+      if(data.check){
+        setRoom(data.data)
+      }
+      }
+    }
+    catch(e:any){
+      setRoom([])
+    }
+  }, [])
+
+
+  const onSe = useCallback(async (text:string, result:any)=>{
+    try{
+      if (getAccessToken && user_id) {
+      if(text.length == 0){
+        return
+      }
+      const fetching = await axios.get(`http://localhost:8999/get_all_rooms_on_search/?room_name_search=${text}`)
+      const data:AllRoomsData = fetching.data
+      if(data.check){
+        setRoom(data.data)
+      }
+      }
+    }
+    catch(e:any){
+      setRoom([])
+    }
+  }, [])
 
   async function clear(){
     try{
       if (getAccessToken && user_id) {
-      const fetching = await axios.get(`http://localhost:8999/get_all_rooms_on_search/get_all_rooms`)
+      const fetching = await axios.get(`http://localhost:8999/get_all_rooms`)
       const data:AllRoomsData = fetching.data
-      console.log(data)
       if(data.check){
         setRoom(data.data)
       }
       }
     }
     catch(e:any){
-      console.log(e)
+      setRoom([])
     }
   }
-  function onH(result:any){
-    console.log(result)
+
+  async function getData(data:JoinRoomData){
+    try{
+      if(getAccessToken && user_id){
+        const result15 = await axios.get(`http://localhost:8999/validate_joined_checkowner/?user_id=${user_id}&room_id=${data.created_room_id}`)
+          const data15 = await result15.data
+          if(data15.check == false){
+            if(data.room_visibility){
+              const result1 = await axios.get(`http://localhost:8999/validate_joined_rooms2/?user_id=${user_id}&room_name=${data.room_name}`)
+              const data3 = await result1.data
+              if(data3.check == false){
+                const result = await axios.post("http://localhost:8999/join_room", {
+                  data: JSON.stringify({
+                    createdRoom_id: data.created_room_id,
+                    usr_id:user_id,
+                    roomname:data.room_name,
+                    roomdes:data.room_des,
+                    roomtag:data.room_tag,
+                    roomvis:data.room_visibility
+                 })
+               })
+               const data2 = await result.data
+             
+               if(data2.check){
+              alert_msg.success(data2.msg)
+              Socket.emit("join_room",data.room_name)
+              const Join_Room_msg = `
+               Hello you just joined a room : ${data.room_name}.
+               Go to Joined Room page to see your newly joined room.
+               Your regards Codeapp.com`
+               const result2 = await axios.post("http://localhost:8999/add_msgs", {
+                data: JSON.stringify({
+                  id:user_id,
+                  msg_name: "Join Room Message",
+                  msg_des:Join_Room_msg
+               })
+              })
+              const res:AddMsgType = result2.data
+            if(res.check){
+              console.log(res)
+            }
+             }
+              }
+              else{
+                alert_msg.error("You have already joined this room")
+               }
+            }
+          } 
+          else{
+            alert_msg.error("Your the owner of this room")
+          }
+      }
+    }
+    catch(err:any){
+      alert_msg.error(String(err))
+    }
   }
+  
 
   const formatResult = (item:any)=>{
     return (
       <>
-      <span style={{display: "block", textAlign:"left"}}>
+      <span style={{display: "block", textAlign:"left", color:"red"}}>
         id: {item.id}
       </span>
-      <span style={{display: "block", textAlign:"left"}}>
+      <span style={{display: "block", textAlign:"left", color:"green"}}>
         name: {item.name}
       </span>
       </>
@@ -103,18 +191,11 @@ export default memo(function Rooms() {
         <Card.Footer>
           Room Total users: {data.room_total_usr}
         </Card.Footer>
-        <Button  onClick={() => setJoin(o => !o)}  variant="warning" className={`mb-4 w-50 text-center fw-bold ${route.create_btn}`}>Join Room</Button>
+        <Button  onClick={() =>{
+          getData(data)
+        } }  variant="warning" className={`mb-4 w-50 text-center fw-bold ${route.create_btn}`}>Join Room</Button>
       </Card>
       </Fade>
-      <Popup
-     open={join}
-     closeOnDocumentClick
-      onClose={closeJoinModal}
-      position={"center center"}
-      modal={true}
-      >     
-      <JoinRoomPreview close={closeJoinModal} privacy={data.room_visibility}/>
-      </Popup>
       </div>
     )
   })
@@ -131,6 +212,7 @@ export default memo(function Rooms() {
       try{
         if (getAccessToken && user_id) {
         setAM("")
+        setE("")
         setLoading(true)
         const fetching = await axios.get("http://localhost:8999/get_all_rooms")
         const data:AllRoomsData = fetching.data
@@ -162,7 +244,7 @@ export default memo(function Rooms() {
         }
       }
       catch(e:any){
-
+      setRoom([])
         setLoading(false)
         setShow(false)
         setAM("")
@@ -199,7 +281,8 @@ export default memo(function Rooms() {
       onSearch={onSe}
       onClear={clear}
       formatResult={formatResult}
-      className={"mt-5"}
+      className={`mt-5 ${route.rooms_search_box}`}
+      styling={searchStyle}
       />
       <div className={`mt-5 ${route.rooms_card}`}>
         {show && roomsSetup}

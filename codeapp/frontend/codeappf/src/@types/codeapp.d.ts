@@ -100,7 +100,12 @@ type SearchData = {
      room_tag: string,
      room_visibility: boolean,
      room_total_usr: int, 
- }
+}
+type msgProp = {
+    msg_id: int,
+    msg_name: string,
+    msg_des: string
+}
 
  type itemsType = {
     id: number,
@@ -118,6 +123,30 @@ type AllRoomsData = {
             room_tag: string,
             room_visibility: boolean,
             room_total_usr: int, 
+        }
+    ],
+    check: boolean
+}
+type AllJoinedRecentRoomsData = {
+    data: [
+        {
+           created_room_id: int,
+            room_name: string,
+            room_des: string,
+            room_tag: string,
+            room_visibility: boolean,
+        }
+    ],
+    check: boolean
+}
+type AllRoomsData2 = {
+    data: [
+        {
+           created_room_id: int,
+            room_name: string,
+            room_des: string,
+            room_tag: string,
+            room_visibility: boolean,
         }
     ],
     check: boolean
@@ -146,7 +175,27 @@ type validateRoomType = {
     ]
 }
 
+type Room_Msgs = {
+    check: boolean,
+    data: [
+        {
+            room_msg_id:number,
+            msg:string,
+            typeofmmsg:string
+        }
+    ]
+}
+
 type createRoomType = {
     check: boolean,
     msg: string
+}
+
+type JoinRoomData = {
+    created_room_id: int,
+    room_name: string,
+    room_des: string,
+    room_tag: string,
+    room_visibility: boolean,
+    room_total_usr: int, 
 }

@@ -51,6 +51,7 @@ export default memo(function RightPanel() {
     localStorage.removeItem("roomId")
     localStorage.removeItem("user_id")
     localStorage.removeItem("accessToken")
+    localStorage.removeItem("room_name")
     alert("Successfully logged out")
   }
 

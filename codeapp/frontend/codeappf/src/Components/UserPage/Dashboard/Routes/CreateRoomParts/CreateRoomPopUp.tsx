@@ -91,7 +91,7 @@ export default memo(function CreateRoomPopUp({close, fresh}:propstype) {
           }
         )
         const res:AddMsgType = result2.data
-        if(res){
+        if(res.check){
           setLoading(false)
           Socket.emit("create_room",userRoomDetails.roomname)
           close()

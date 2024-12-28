@@ -1,0 +1,32 @@
+.input_text{
+    width: 100%;
+    height: 50px;
+}
+.text_area_join{
+    width: 100%;
+    position: relative;
+    top:10px;
+}
+.send_btn{
+    margin-top: 12px;
+}
+.chat_con{
+    background-color: black;
+    color:white;
+    height: 95vh;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+.chat_con2{
+    color:white;
+    height: 50vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+.chat_align{
+    display: block;
+}
+.chat_align2{
+    display: block;
+}

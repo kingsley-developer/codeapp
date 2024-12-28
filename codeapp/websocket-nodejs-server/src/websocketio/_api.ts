@@ -28,20 +28,53 @@ export default class API{
         API.app.use("/get_user_info", MiddleWare.get_user_info)
         API.app.use("/get_user_msgs/:id", MiddleWare.Get_All_User_Msgs)
         API.app.use("/create_room", MiddleWare.Create_Room)
+        API.app.use("/join_room", MiddleWare.Join_Room)
         API.app.use("/add_msgs", MiddleWare.Add_Msgs)
+        API.app.use("/get_room_msgs", MiddleWare.Get_Room_Msgs)
+        API.app.use("/insert_room_msg", MiddleWare.Insert_Room_Msg)
         API.app.use("/get_created_rooms", MiddleWare.Get_Created_Rooms)
+        API.app.use("/get_joined_rooms", MiddleWare.Get_Joined_Rooms)
+        API.app.use("/validate_joined_rooms2", MiddleWare.Validate_Joined_Rooms2)
+        API.app.use("/validate_joined_checkowner", MiddleWare.validate_joined_checkowner)
         API.app.use("/get_all_room_name", MiddleWare.Get_All_Room_Name)
         API.app.use("/get_saved_user", MiddleWare.get_Saved_User)
         API.app.use("/get_all_rooms", MiddleWare.Get_All_Rooms)
+        API.app.use("/get_all_user_count", MiddleWare.Get_All_User_Count)
         API.app.use("/get_all_rooms_on_search", MiddleWare.GetAllRoomsOnSearch)
+        API.app.use("/get_all_rooms_on_select", MiddleWare.GetAllRoomsOnSelect)
         API.app.use("/delete_user_msgs/:id", MiddleWare.Delete_All_Msgs)
         API.app.use("/delete_spec_user_msgs", MiddleWare.Delete_Spec_Msgs)
+        API.app.use("/get_created_rooms_count", MiddleWare.Get_Created_Rooms_Count)
+        API.app.use("/get_joined_rooms_count", MiddleWare.Get_Joined_Rooms_Count)
+        API.app.use("/get_user_recent_created_rooms", MiddleWare.Get_User_Recent_Created_Rooms)
+        API.app.use("/get_user_recent_Joined_rooms", MiddleWare.Get_User_Recent_Joined_Rooms)
+        API.app.use("/get_joined_rooms_names", MiddleWare.Get_Joined_Rooms_Names)
         
         API.app.post("/create_user", (req: Request, res: Response) => {
+        })
+        API.app.post("/insert_room_msg", (req: Request, res: Response) => {
         })
         API.app.post("/update_user", (req: Request, res: Response) => {
         })
         API.app.get("/get_user_info", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_room_msgs", (req: Request, res: Response) => {
+        })
+        API.app.get("/validate_joined_checkowner", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_joined_rooms_names", (req: Request, res: Response) => {
+        })
+        API.app.get("/validate_joined_rooms2", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_user_recent_created_rooms", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_user_recent_joined_rooms", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_created_rooms_count", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_joined_rooms_count", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_all_user_count", (req: Request, res: Response) => {
         })
         API.app.get("/get_saved_user", (req: Request, res: Response) => {
         })
@@ -49,13 +82,19 @@ export default class API{
         })
         API.app.post("/create_room", (req: Request, res: Response) => {
         })
+        API.app.post("/join_room", (req: Request, res: Response) => {
+        })
         API.app.post("/add_msgs", (req: Request, res: Response) => {
         })
         API.app.get("/get_created_rooms", (req: Request, res: Response) => {
         })
+        API.app.get("/get_joined_rooms", (req: Request, res: Response) => {
+        })
         API.app.get("/get_all_rooms", (req: Request, res: Response) => {
         })
         API.app.get("/get_all_rooms_on_search", (req: Request, res: Response) => {
+        })
+        API.app.get("/get_all_rooms_on_select", (req: Request, res: Response) => {
         })
         API.app.get("/get_all_room_name", (req: Request, res: Response) => {
         })
@@ -74,28 +113,13 @@ export default class API{
 
             s.on("create_room", async(room_name: string[]) => {
                 s.join(room_name)
-                console.log(s.rooms)
             })
             
-            s.on("join_room", (room_owner_id: number, room_name: string, privacy: string) => {
-                 console.log("Join room name: "+room_name)
-                 const check = [s.rooms]
-                for(let i in check) {
-                    if (i != room_name) {
-                        console.log(i)
-                        s.emit("user_join_room", {room_name, msg: "Room not joined already exist", success: false})
-                        console.log("No room exist")
-                        return;
-                    }
-                    else if (i == room_name) {
-                        if(privacy){
-                            s.join(room_name)
-                        }
-                        s.emit("user_join_room", {room_name, msg: "Room joined", success: true})
-                        return;
-                    }
-                }
-                
+            s.on("join_room", async(room_name: string[]) => {      
+                s.join(room_name)
+            })
+            s.on("sender_msg", async(text:string, room_name: string) => {      
+                s.broadcast.to(room_name).emit("receiver_msg",text)
             })
 
             s.on("delete_created_room", (room_name: string) => {
